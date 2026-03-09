@@ -2,4 +2,4 @@
 
 ![DBZ](assets/dbz.webp)
 
-The code is shit, but it is fun to mess around. 
+The code is shit, but you guys can try and mess with it!! xD
