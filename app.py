@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import math
 import numpy as np
+import os
 
 BaseOptions = mp.tasks.BaseOptions
 PoseLandmarker = mp.tasks.vision.PoseLandmarker
@@ -35,12 +36,17 @@ def get_looped_frame(cap):
     return frame
 
 def main():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(script_dir, 'pose_landmarker_heavy.task')
+    energy_path = os.path.join(script_dir, 'assets', 'energy.mp4')
+    kame_path = os.path.join(script_dir, 'assets', 'kamehameha.mp4')
+    
     cap = cv2.VideoCapture(0)
-    cap_energy = cv2.VideoCapture('assets/energy.mp4')
-    cap_kame = cv2.VideoCapture('assets/kamehameha.mp4')
+    cap_energy = cv2.VideoCapture(energy_path)
+    cap_kame = cv2.VideoCapture(kame_path)
     
     options = PoseLandmarkerOptions(
-        base_options=BaseOptions(model_asset_path='pose_landmarker_heavy.task'),
+        base_options=BaseOptions(model_asset_path=model_path),
         running_mode=VisionRunningMode.VIDEO,
         min_pose_detection_confidence=0.7,
         min_pose_presence_confidence=0.7,
